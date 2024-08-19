@@ -1,0 +1,118 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <mat-card-title style="font-size: 22px; font-weight: bold">
+      Tipos de Habitaciones
+    </mat-card-title>
+    <!-- Botón de agregar nueva categoría -->
+    <button
+      mat-flat-button
+      matTooltip="Añadir Nuevo"
+      matTooltipPosition="left"
+      color="primary"
+      aria-label="Agregar Nueva Categoría"
+      [routerLink]="['/ui-components/categorias/form']"
+    >
+      Añadir Nuevo Tipo 
+    </button>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+    <!-- Campo de búsqueda -->
+    <div
+      class="input-group align-items-center my-4"
+      style="display: flex; max-width: 100%"
+    >
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        style="flex: 1; margin-right: 8px"
+      >
+        <mat-label>Buscar Categoría</mat-label>
+        <input
+          matInput
+          [formControl]="message"
+          type="text"
+          class="form-control"
+          placeholder="Buscar categoría"
+          aria-label="Buscar categoría"
+          [(ngModel)]="filtro"
+          (ngModelChange)="filtrarCategoria()"
+        />
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        matTooltip="Vaciar Campo"
+        matTooltipPosition="above"
+        color="primary"
+        (click)="borrarFiltro()"
+        style="white-space: nowrap"
+      >
+        Borrar
+      </button>
+    </div>
+
+    <!-- Mostrar total de categorías -->
+    <p style="font-weight: bold">
+      Total de tipo de habitaciones: {{ categoriasFiltradas.length }}
+    </p>
+
+    <!-- Tabla de Categorías -->
+    <div class="table-responsive">
+      <table mat-table [dataSource]="categoriasFiltradas" class="elegant-table">
+        <!-- ID Column -->
+        <ng-container matColumnDef="idCategoria">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">
+            ID
+          </th>
+          <td mat-cell *matCellDef="let categoria" class="cell">
+            {{ categoria.idCategoria }}
+          </td>
+        </ng-container>
+
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">
+            Nombre
+          </th>
+          <td mat-cell *matCellDef="let categoria" class="cell">
+            {{ categoria.nombre }}
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">
+            Acciones
+          </th>
+          <td mat-cell *matCellDef="let categoria" class="cell actions-cell">
+            <button
+              mat-icon-button
+              color="primary"
+              matTooltip="Editar"
+              matTooltipPosition="above"
+              [routerLink]="['/ui-components/categorias/formcategoria', categoria.idCategoria]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              matTooltip="Eliminar"
+              matTooltipPosition="above"
+              (click)="eliminarCategoria(categoria)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Define header row and rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

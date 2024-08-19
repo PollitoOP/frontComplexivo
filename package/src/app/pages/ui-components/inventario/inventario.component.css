@@ -1,0 +1,23 @@
+.link-title {
+  font-size: 15px; /* Cambia este valor al tamaño que desees */
+  text-decoration: underline; /* Subrayado permanente */
+  color: #1976d2; /* Color azul para el enlace */
+  transition: color 0.3s ease; /* Suave transición de color */
+}
+
+.link-title:hover {
+  color: #0d47a1; /* Azul más oscuro al pasar el mouse */
+}
+
+.link-detalles {
+  font-size: 15px;
+  color: #1976d2; /* Color azul para que parezca un enlace */
+  text-decoration: underline; /* Subrayado para indicar que es un enlace */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+}
+
+.link-detalles:hover {
+  color: #0d47a1; /* Un azul más oscuro cuando se pasa el mouse sobre el enlace */
+}
+
+

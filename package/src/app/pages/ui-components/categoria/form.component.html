@@ -1,0 +1,50 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+      <mat-card-title class="m-b-0">{{ titulo }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <form (ngSubmit)="crear()">
+                <div class="row">
+                  <div class="col-12">
+                    <!-- Nombre de la Categoría -->
+                    <mat-form-field class="w-100" appearance="outline">
+                      <mat-label>Nombre de la Categoría</mat-label>
+                      <input
+                        matInput
+                        name="nombre"
+                        [(ngModel)]="categoria.nombre"
+                        required
+                      />
+                      <mat-error *ngIf="!categoria.nombre?.trim()">
+                        El nombre de la categoría es requerido.
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+  
+                <!-- Botón Guardar -->
+                <div
+                  class="col-12 d-flex justify-content-center align-items-center mt-3"
+                >
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    matTooltip="Guardar Tipo de Habitación"
+                    matTooltipPosition="above"
+                    style="font-weight: bold"
+                  >
+                    GUARDAR
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

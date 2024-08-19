@@ -1,0 +1,91 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <mat-card-title style="font-size: 22px; font-weight: bold">
+      Listado de Productos
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+    <!-- Campo de búsqueda -->
+    <div
+      class="input-group align-items-center my-4"
+      style="display: flex; max-width: 100%"
+    >
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        style="flex: 1; margin-right: 8px"
+      >
+        <mat-label>Buscar Productos</mat-label>
+        <input
+          matInput
+          [formControl]="message"
+          type="text"
+          class="form-control"
+          placeholder="Buscar productos"
+          aria-label="Buscar productos"
+          [(ngModel)]="filtro"
+          (ngModelChange)="filtrarProductos()"
+        />
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        matTooltip="Vaciar Campo"
+        matTooltipPosition="above"
+        color="primary"
+        (click)="borrarFiltro()"
+        style="white-space: nowrap"
+      >
+        Borrar
+      </button>
+    </div>
+
+    <!-- Contenedor de tarjetas de productos -->
+    <div class="row">
+      <div
+        class="col-sm-6 col-lg-3"
+        *ngFor="let producto of productosFiltrados"
+      >
+        <mat-card class="cardWithShadow productcard overflow-hidden">
+          <img
+            *ngIf="producto.fotoUrl"
+            [src]="producto.fotoUrl"
+            alt="{{ producto.nombrePro }}"
+            class="w-100"
+            mat-card-image
+          />
+          <mat-card-content class="p-b-24 p-t-12 position-relative">
+
+            <mat-card-title
+              class="mat-headline-2 f-s-16 m-b-4"
+              style="font-weight: bold"
+            >
+              {{ producto.nombrePro }}
+            </mat-card-title>
+
+            <p *ngIf="producto.categoria">
+              <strong>Categoría:</strong> {{ producto.categoria.nombre }}
+            </p>
+            <p><strong>Descripción:</strong> {{ producto.descripcionPro }}</p>
+            <p><strong>Talla:</strong> {{ producto.tallaPro }}</p>
+            <p><strong>Precio:</strong> ${{ producto.precioPro }}</p>
+
+            <!-- Estado del Producto -->
+            <p
+              [ngClass]="{
+                'text-success': producto.estadoPro,
+                'text-danger': !producto.estadoPro
+              }"
+            >
+              <strong style="color: black">Estado:</strong>
+              {{ producto.estadoPro ? "Disponible" : "En reposición" }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

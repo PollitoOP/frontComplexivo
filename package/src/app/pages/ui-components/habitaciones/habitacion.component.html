@@ -1,0 +1,170 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <mat-card-title style="font-size: 22px; font-weight: bold">
+      Habitaciones
+    </mat-card-title>
+    <!-- Botón de agregar nueva habitación -->
+    <button
+      mat-flat-button
+      matTooltip="Añadir Nueva Habitación"
+      matTooltipPosition="left"
+      color="primary"
+      aria-label="Agregar Nueva Habitación"
+      [routerLink]="['/ui-components/habitaciones/form']"
+    >
+      Añadir Nueva Habitación
+    </button>
+    
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+    <!-- Campo de búsqueda -->
+    <div
+      class="input-group align-items-center my-4"
+      style="display: flex; max-width: 100%"
+    >
+      <mat-form-field
+        class="w-100"
+        appearance="outline"
+        style="flex: 1; margin-right: 8px"
+      >
+        <mat-label>Buscar Habitación</mat-label>
+        <input
+          matInput
+          [formControl]="message"
+          type="text"
+          class="form-control"
+          placeholder="Buscar habitación"
+          aria-label="Buscar habitación"
+          [(ngModel)]="filtro"
+          (ngModelChange)="filtrarHabitacion()"
+        />
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        matTooltip="Vaciar Campo"
+        matTooltipPosition="above"
+        color="primary"
+        (click)="borrarFiltro()"
+        style="white-space: nowrap"
+      >
+        Borrar
+      </button>
+    </div>
+
+    <!-- Mostrar total de habitaciones -->
+    <p style="font-weight: bold">
+      Total de habitaciones: {{ habitacionesFiltradas.length }}
+    </p>
+    <!-- Botón de imprimir reporte -->
+    <button
+    mat-flat-button
+    matTooltip="Imprimir Reporte"
+    matTooltipPosition="left"
+    color="accent"
+    aria-label="Imprimir Reporte"
+    (click)="imprimirReporte()"
+    style="margin-left: 10px;"
+  >
+    Imprimir Reporte
+  </button>
+
+    <!-- Tabla de Habitaciones -->
+    <div class="table-responsive">
+      <table
+        mat-table
+        [dataSource]="habitacionesFiltradas"
+        class="elegant-table"
+      >
+        <!-- ID Column -->
+        <ng-container matColumnDef="idHabitacion">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">ID</th>
+          <td mat-cell *matCellDef="let habitacion" class="cell">
+            {{ habitacion.idHabitacion }}
+          </td>
+        </ng-container>
+
+        <!-- Numero Column -->
+        <ng-container matColumnDef="numero">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">Número</th>
+          <td mat-cell *matCellDef="let habitacion" class="cell">
+            {{ habitacion.numero }}
+          </td>
+        </ng-container>
+
+        <!-- Descripcion Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">
+            Descripción
+          </th>
+          <td mat-cell *matCellDef="let habitacion" class="cell">
+            {{ habitacion.descripcion }}
+          </td>
+        </ng-container>
+
+        <!-- Precio Column -->
+        <ng-container matColumnDef="precio">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">Precio</th>
+          <td mat-cell *matCellDef="let habitacion" class="cell">
+            {{ habitacion.precio | currency }}
+          </td>
+        </ng-container>
+
+        <!-- Estado Column -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">Estado</th>
+          <td mat-cell *matCellDef="let habitacion" class="cell">
+            {{ habitacion.estado }}
+          </td>
+        </ng-container>
+
+        <!-- Categoria Column -->
+        <ng-container matColumnDef="categoria">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">
+            Tipo
+          </th>
+          <td mat-cell *matCellDef="let habitacion" class="cell">
+            {{ habitacion.categoria.nombre }}
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">
+            Acciones
+          </th>
+          <td mat-cell *matCellDef="let categoria" class="cell actions-cell">
+            <button
+              mat-button
+              color="primary"
+              matTooltip="Editar"
+              matTooltipPosition="above"
+              [routerLink]="[
+                '/ui-components/habitaciones/formhabitacion',
+                categoria.idCategoria
+              ]"
+            >
+              Editar
+            </button>
+            <button
+              mat-button
+              color="warn"
+              matTooltip="Eliminar"
+              matTooltipPosition="above"
+              (click)="eliminarHabitacion(categoria)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Define header row and rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

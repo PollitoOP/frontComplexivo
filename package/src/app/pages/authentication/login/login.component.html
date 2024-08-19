@@ -1,0 +1,39 @@
+<div class="blank-layout-container justify-content-center align-items-center bg-light-primary">
+  <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
+    <div class="col-lg-4 d-flex align-items-center">
+      <mat-card class="cardWithShadow boxed-auth">
+        <mat-card-content class="p-32">
+          <div class="text-center">
+            <a>
+              <img src="./assets/images/logos/dark-logo.svg" class="align-middle m-2" alt="logo" />
+            </a>
+          </div>
+
+          <form class="m-t-30">
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Usuario:</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput [(ngModel)]="username" name="username" placeholder="Ingresa tu usuario" required />
+              <mat-error *ngIf="!username">Usuario es requerido</mat-error>
+              <mat-error *ngIf="usernameIncorrect">Usuario incorrecto</mat-error>
+            </mat-form-field>
+            
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Contraseña:</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="password" placeholder="Ingresa tu contraseña" required />
+              <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="!password">Contraseña es requerida</mat-error>
+              <mat-error *ngIf="passwordIncorrect">Contraseña incorrecta</mat-error>
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" class="w-100" (click)="login()">
+              Iniciar Sesión
+            </button>
+            
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+.table-responsive {
+  overflow-x: auto;
+}
+
+.elegant-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.header-cell {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+  padding-bottom: 8px;
+}
+
+.cell {
+  background-color: #ffffff;
+  padding: 16px;
+  border-bottom: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 16px;
+  /* border: 2px solid #ced4da; */
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0;
+}
+
+.profile-address {
+  font-size: 15px;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 10px;
+}
+
+.centered-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #0a8adc; /* Color del botón */
+  color: white; /* Color del texto */
+  border-radius: 8px; /* Bordes redondeados */
+  font-size: 15px; /* Tamaño de fuente */
+  font-weight: 500; /* Peso de la fuente */
+  transition: background-color 0.3s ease; /* Transición suave en el hover */
+  text-align: center;
+}
+
+.custom-file-upload:hover {
+  background-color: #0a8adc; /* Color del botón al hacer hover */
+}
+
+.custom-file-upload mat-icon {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.d-none {
+  display: none;
+}

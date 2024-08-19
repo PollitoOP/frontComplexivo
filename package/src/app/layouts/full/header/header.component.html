@@ -1,0 +1,20 @@
+<mat-toolbar class="topbar">
+  <!-- Mobile Menu -->
+  <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
+    <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+  </button>
+
+  <button
+    mat-icon-button
+    aria-label="Notifications"
+    matTooltip="Sin Notificaciones"
+    matTooltipPosition="right"
+  >
+    <i-tabler class="d-flex" name="bell" matBadgeColor="primary"></i-tabler>
+  </button>
+
+  <span class="flex-1-auto"></span>
+
+  <!-- Mostrar el nombre de usuario en el header -->
+  <span class="username" *ngIf="username">{{ username }}</span>
+</mat-toolbar>
